@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('external_id')->unsigned()->default(0)->unique();
+            $table->integer('external_id')->unsigned()->default(0)->unique()->index();
             $table->string('reference')->nullable();
             $table->unsignedBigInteger('state_id')->nullable();
             $table->string('state_name')->nullable();
@@ -37,7 +37,7 @@ return new class extends Migration
             $table->text('data_hash')->nullable()->index();
 
             $table->timestamps();
-            $table->index('external_id');
+           // $table->index('external_id');
         });
     }
 
