@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('external_id')->unsigned()->default(0)->unique();
             $table->boolean('active')->default(1);
-            $table->text('data_hash')->nullable()->index();
+            $table->string('data_hash')->nullable()->index();
             $table->timestamps();
         });
     }
