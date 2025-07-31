@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable()->index();
             $table->unsignedBigInteger('id_default_category')->nullable();
-            $table->text('brand')->nullable()->index();
+            $table->string('brand')->nullable()->index();
             $table->string('scrape_link')->nullable();
             $table->integer('quantity')->default(0);
             $table->text('category')->nullable();
