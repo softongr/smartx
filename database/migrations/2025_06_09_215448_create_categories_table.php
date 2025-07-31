@@ -22,7 +22,9 @@ return new class extends Migration
             $table->text('meta_keywords')->nullable();
             $table->string('link')->nullable();
             $table->boolean('active')->default(1);
-            $table->text('data_hash')->nullable()->index();
+          //  $table->text('data_hash')->nullable()->index();
+            $table->text('data_hash')->index('categories_data_hash_index', 191);
+
             $table->dateTime('date_add')->nullable();
             $table->dateTime('date_upd')->nullable();
             $table->timestamps();
