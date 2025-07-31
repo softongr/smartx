@@ -69,7 +69,7 @@ Route::middleware('auth')->group(function () {
         Route::get('settings/smtp',App\Livewire\Settings\Smtp\Index::class)->name('settings.smtp.index')->withPermission();
         Route::get('settings/api_token', App\Livewire\Settings\Api\Index::class)->name('settings.api_token.index')->withPermission();
         Route::get('settings/performance',App\Livewire\Settings\System\Index::class)->name('settings.performance.index')->withPermission();
-        Route::get('settings/myaade' ,App\Livewire\Settings\myAade\Index::class)->name('settings.myaade.index')->withPermission();
+      //  Route::get('settings/myaade' ,App\Livewire\Settings\myAade\Index::class)->name('settings.myaade.index')->withPermission();
         Route::get('settings/synchronization', App\Livewire\Settings\Synchronization\Index::class)->name('settings.synchronization.index');
         /*************************************** END SETTINGS *********************************/
 
