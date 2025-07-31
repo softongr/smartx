@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
+            $table->string('name')->nullable()->index();
             $table->timestamps();
 
-            $table->index('name');
+          //  $table->index('name');
         });
     }
 
