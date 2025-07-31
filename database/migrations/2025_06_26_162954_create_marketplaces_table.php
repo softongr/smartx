@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('marketplaces', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->index();
             $table->string('url_pattern')->nullable();
             $table->text('class')->nullable();
             $table->boolean('has_commission')->default(false);
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->decimal('minimum_profit_margin', 5, 2)->default(0.00);
             $table->timestamps();
             $table->softDeletes();
-            $table->index('name');
+        
 
         });
     }
