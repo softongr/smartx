@@ -34,7 +34,7 @@ return new class extends Migration
             $table->json('shipping_address')->nullable();
             $table->json('billing_address')->nullable();
             $table->json('items')->nullable();
-            $table->text('data_hash')->nullable()->index();
+            $table->string('data_hash')->nullable()->index();
 
             $table->timestamps();
            // $table->index('external_id');
