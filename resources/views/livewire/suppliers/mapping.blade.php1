@@ -1,0 +1,85 @@
+<div>
+
+
+
+
+    <div class="card">
+        <div class="card-header flex items-center justify-between">
+            <div class="">
+                <h5 class="text-lg font-medium text-default-950 capitalize mb-1">{{$supplier->name}}</h5>
+                <p class="text-default-600 text-sm font-medium"><strong>{{$supplier->api_url}}</strong></p>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="flex flex-wrap items-center gap-2">
+
+                @if($step === 1)
+                    <form wire:submit.prevent="save" class="space-y-4">
+
+
+                        <div class="flex space-x-4">
+                            <button type="submit"
+                                    class="btn bg-blue-600 text-white">
+                                Κατέβασε XML
+                            </button>
+                        </div>
+                    </form>
+                @endif
+
+
+                    @if($step === 2)
+                        @if (session()->has('message'))
+                            <div class="mb-4 text-green-600">
+                                {{ session('message') }}
+                            </div>
+                        @endif
+
+                        <form wire:submit.prevent="saveMapping" class="space-y-4">
+                            @foreach ($fields as $field)
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-1/3 font-medium">{{ $field }}</div>
+                                    <div class="w-2/3">
+                                        <select wire:model.defer="mapping.{{ $field }}"
+                                                class="w-full border rounded px-2 py-1">
+                                            <option value="">-- Διάλεξε DB πεδίο --</option>
+                                            @foreach ($dbColumns as $col)
+                                                <option value="{{ $col }}">{{ $col }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error("mapping.$field")
+                                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            @endforeach
+
+                            <div class="flex space-x-4">
+                                <button type="submit"
+                                        class="btn bg-green-600 text-white">
+                                    Αποθήκευση & Ξεκίνημα Import
+                                </button>
+                            </div>
+                        </form>
+                    @endif
+
+                    @if($step === 3)
+                        <div class="p-4 bg-green-100 rounded">
+                            <h3 class="text-green-800">✔ Το mapping ολοκληρώθηκε!</h3>
+                            <p>Το import τρέχει στο παρασκήνιο. Μπορείς να πας στη λίστα imports για να δεις πρόοδο.</p>
+
+                        </div>
+
+                        <button wire:click="editMapping"
+                                type="button"
+                                class="inline-block px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600">
+                            Επεξεργασία Mapping
+                        </button>
+                    @endif
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+

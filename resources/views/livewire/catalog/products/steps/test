@@ -1,0 +1,106 @@
+ <div class="flex gap-5 justify-self-center items-center mb-5">
+        @if($features)
+        <div>
+
+
+            <button type="button" class="btn rounded-full  bg-primary text-white gap-3"
+                    data-hs-overlay="#overlay-top">
+                <i class="material-symbols-rounded font-light text-2xl transition-all group-hover:fill-1">Assignment</i>
+                <span>
+                     {{ __('View Features') }}
+                </span>
+
+            </button>
+
+            <div id="overlay-top"
+                 class="hs-overlay hs-overlay-open:translate-y-0
+                 -translate-y-full fixed top-0 inset-x-0 transition-all duration-300 transform  h-full w-full z-[80] bg-white border-b border-default-200 hidden">
+                <div
+                    class="flex justify-between items-center py-3 px-4 border-b border-default-200">
+                    <h3 class="text-xl font-medium text-default-600">
+                        {{__('Product Features')}}
+                    </h3>
+                    <button type="button" class="hover:text-default-900"
+                            data-hs-overlay="#overlay-top">
+                        <span class="sr-only">{{ __('Close') }}</span>
+                        <i class="ti ti-x text-lg"></i>
+                    </button>
+                </div>
+                <div class="p-4">
+                    <div class="grid xl:grid-cols-4 md:grid-cols-2 gap-3 ">
+
+
+                        @foreach($features as $feature)
+                            <div class="col-xl-3 col-md-6">
+                                <strong> {{$feature['name']}}: </strong>   {{$feature['value']}}
+                            </div>
+
+
+
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @endif
+
+
+        @if($shopPrices)
+
+
+        <div>
+            <button type="button" class="btn rounded-full  bg-primary text-white gap-3"
+                    data-hs-overlay="#overlay-bottom">
+                <i class="material-symbols-rounded font-light text-2xl transition-all group-hover:fill-1">Store</i>
+                <span>
+                     {{ __('Stores') }}
+                </span>
+
+            </button>
+
+
+            <div id="overlay-bottom"
+                 class="hs-overlay hs-overlay-open:translate-y-0 translate-y-full fixed bottom-0 inset-x-0 transition-all
+             duration-300 transform  h-full w-full z-[80] bg-white border-t border-default-200 hidden"
+                 tabindex="-1">
+                <div
+                    class="flex justify-between items-center py-3 px-4 border-b border-default-200">
+                    <h3 class="text-lg font-medium text-default-600">
+                        {{ __('Marketplaces Stores') }}
+                    </h3>
+                    <button type="button" class="hover:text-default-900"
+                            data-hs-overlay="#overlay-bottom">
+                        <span class="sr-only">Close modal</span>
+                        <i class="ti ti-x text-lg"></i>
+                    </button>
+                </div>
+                <div class="p-4">
+                    <table class="w-full table-auto border">
+                        <thead>
+                        <tr class="bg-gray-100">
+                            <th class="border px-2 py-1">Marketplace</th>
+                            <th class="border px-2 py-1">Κατάστημα</th>
+                            <th class="border px-2 py-1">Τιμή</th>
+                            <th class="border px-2 py-1">Link</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($shopPrices as $shop)
+                            <tr>
+                                <td class="border px-2 py-1">{{ $shop['marketplace'] }}</td>
+                                <td class="border px-2 py-1">{{ $shop['shop'] }}</td>
+                                <td class="border px-2 py-1">{{ number_format($shop['price'], 2) }}€</td>
+                                <td class="border px-2 py-1">
+                                    <a href="{{ $shop['url'] }}" class="text-blue-500" target="_blank">link</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+            @endif
+
+    </div>

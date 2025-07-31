@@ -1,0 +1,89 @@
+<form wire:submit.prevent="save" class="mt-5">
+    <div class="grid lg:grid-cols-2 gap-6">
+
+        <div>
+            <x-input-label for="aade_username" :value="__('myAADE Username')" required="true"></x-input-label>
+            <x-text-input wire:model="aade_username" id="aade_username" placeholder="{{__('myAADE Username')}}"
+                          type="text" class="mt-1 block w-full" />
+            <x-input-error class="text-red-500 text-xs font-medium" :messages="$errors->get('aade_username')" />
+            <div class="mt-2">
+
+
+                <small class="flex justify-start items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" class="size-5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                    </svg>
+                    <i>
+                        {{ __('You can find them through the myAADE platform, or alternatively, contact your accountant for more information.') }}
+                    </i>
+                </small>
+            </div>
+
+
+
+        </div><!-- div-->
+
+
+        <div>
+            <x-input-label for="aade_password" :value="__('myAADE Password')" required="true"></x-input-label>
+            <x-text-input wire:model="aade_password" id="aade_password" placeholder="{{__('myAADE Password')}}"
+                          type="text" class="mt-1 block w-full" />
+            <x-input-error class="text-red-500 text-xs font-medium" :messages="$errors->get('aade_password')" />
+
+            <div class="mt-2">
+
+
+                <small class="flex justify-start items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" class="size-5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                    </svg>
+
+                    <i>
+                        {{ __('You can find them through the myAADE platform, or alternatively, contact your accountant for more information.') }}
+                    </i>
+                </small>
+            </div>
+        </div><!-- div-->
+
+
+
+    </div>
+    <div class="grid lg:grid-cols-3 gap-6 mt-5">
+        <button style="height: 80px;width: 100%;" type="submit" class="btn btn-lg bg-primary text-white gap-3 gap-3">
+            <i class="material-symbols-rounded font-light text-2xl transition-all group-hover:fill-1">Save</i>
+            <span class="ml-2">
+                        {{ __('Save') }}
+                    </span><!-- ml-2 -->
+        </button><!-- btn rounded-full  bg-primary text-white gap-3-->
+
+        @if (!empty($aade_username) && !empty($aade_password))
+        <div class="grid lg:grid-cols-2 gap-5">
+            <div>
+                <x-text-input wire:model="test_vat_number" id="test_vat_number"
+                              placeholder="{{__('Vat number')}}"
+                              type="text" class=" block w-full"
+                              style="height: 100%"
+                />
+                <x-input-error class="text-red-500 text-xs font-medium"
+                               :messages="$errors->get('test_vat_number')"/>
+            </div> <!-- div -->
+            <div>
+                <button style="height: 100%;width: 100%"
+                        wire:click="testMyAADE" type="button"
+                        class="btn  bg-primary/25 text-primary hover:bg-primary hover:text-white">
+                    <i class="material-symbols-rounded font-light text-2xl transition-all group-hover:fill-1">Send</i>
+                    <span class="ml-1">{{ __('Check VAT Number') }}</span>
+                </button>
+            </div> <!-- div -->
+        </div><!-- grid lg:grid-cols-2 gap-5-->
+        @endif
+    </div>
+
+
+
+
+</form>
