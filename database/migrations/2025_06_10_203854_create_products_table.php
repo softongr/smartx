@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
+            $table->string('name')->nullable()->index();
             $table->unsignedBigInteger('id_default_category')->nullable();
-            $table->text('brand')->nullable();
+            $table->text('brand')->nullable()->index();
             $table->string('scrape_link')->nullable();
             $table->integer('quantity')->default(0);
             $table->text('category')->nullable();
-            $table->string('mpn')->nullable();
-            $table->string('ean')->nullable();
+            $table->string('mpn')->nullable()->index();
+            $table->string('ean')->nullable()->index();
             $table->longText('short_description')->nullable();
             $table->longText('description')->nullable();
             $table->longText('meta_title')->nullable();
@@ -29,7 +29,7 @@ return new class extends Migration
             $table->unsignedBigInteger('partner_id')->nullable();
             $table->longText('features')->nullable();
             $table->decimal('wholesale_price', 10, 2)->nullable();
-            $table->unsignedBigInteger('external_id')->nullable()->unique();
+            $table->unsignedBigInteger('external_id')->nullable()->unique()->index();
             $table->unsignedBigInteger('marketplace_id')->default(0);
             $table->decimal('desired_profit_margin', 5, 2)->default(0.00);
             $table->foreignId('rate_vat_id')
@@ -57,18 +57,12 @@ return new class extends Migration
 
             $table->boolean('active')->default(true);
             $table->decimal('safety_price', 10, 2)->nullable();
-            $table->text('data_hash')->nullable()->index();
+            $table->string('data_hash')->nullable()->index();
             $table->dateTime('date_add')->nullable();
             $table->dateTime('date_upd')->nullable();
             $table->timestamps();
 
 
-            $table->index('name');
-            $table->index('mpn');
-            $table->index('ean');
-
-            $table->index('external_id');
-            $table->index('brand');
 
         });
 
